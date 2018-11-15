@@ -1,0 +1,51 @@
+main = putStrLn "programa funciona"
+
+elDoble :: Integer -> Integer
+elDoble x = 2 *x
+
+square :: Integer -> Integer
+square x = x * x
+
+elevadoAl :: Integer -> Integer -> Integer
+elevadoAl x y = x ^ y
+
+factorial :: Integer -> Integer
+factorial(0) = 1
+factorial(x) = x * factorial(x-1)
+
+contar :: [Integer] -> Integer
+contar [] = 0
+contar (x:xs) = 1 + contar xs
+
+listaAlCuadrado :: [Integer] -> [Integer]
+listaAlCuadrado[] = []
+listaAlCuadrado (x:xs) = square x : listaAlCuadrado xs
+
+apilar :: Integer -> [Integer] -> [Integer]
+apilar x  y  = x : y
+
+desapilar :: [Integer] -> [Integer]
+desapilar [] = []
+desapilar (x:xs) = xs
+
+esPar :: Integer  -> Integer
+--esPar x = case(x `mod` 2) of
+--  0->1
+--  _->0
+esPar x = if(x `mod` 2) == 0 then 1 else 0
+
+contar :: [Integer] -> Integer
+contar [] = 0
+contar (x:xs) = esPar x + contar xs
+
+raiz :: Double -> Double
+raiz x = sqrt x
+
+suma :: Integer -> Integer -> Integer
+suma x y = x+y
+
+pitagoras :: Integer -> Integer -> Double
+pitagoras x y = raiz( suma( (square x) (square y))) //No anda
+
+
+//esta subida en descarga
