@@ -22,13 +22,16 @@ public abstract class Generadora {
 	
 	public void imprimir(){
 		for(int F = 0; F < this.matriz.getCantNodos(); F++) {
-			for (int C = 0; C < this.matriz.getCantNodos(); C++) {			
-				System.out.printf("%s ",this.matriz.getNodo(F, C));
+			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
+				if (this.matriz.getNodo(F, C)=='1')
+					System.out.printf("%s ",this.matriz.getNodo(F, C));
+				else
+					System.out.printf("0");
 			}
 			System.out.println();
 		}
 	}
 	
-	//como generar un grafo de red de mundo Pequeño. para el 7 de Mica.
+	//como generar un grafo de red de mundo Pequeï¿½o. para el 7 de Mica.
 
 }

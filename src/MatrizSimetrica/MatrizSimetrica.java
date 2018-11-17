@@ -28,6 +28,13 @@ public class MatrizSimetrica {
 	}
 	
 	public void setNodo(int F, int C) {
+		if (F==C)
+			return;
+		if(F > C) {
+			F = F + C;
+			C = F - C;
+			F = F - C;
+		}
 		vectorMatriz[(F*this.cantNodos)+C-((int)(Math.pow(F, 2)+3*F+2)/2)] = '1';
 	}
 	
