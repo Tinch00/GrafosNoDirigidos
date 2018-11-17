@@ -4,6 +4,7 @@ import GeneradoresGrafos.AleatoriaConProbabilidad;
 import GeneradoresGrafos.Generadora;
 import GeneradoresGrafos.NPartito;
 import GeneradoresGrafos.PorcentajeDeAdyacencia;
+import GeneradoresGrafos.PorcentajeDeAdyacenciaRegular;
 import GeneradoresGrafos.RegularConGrado;
 
 public class MainColoreoGrafos {
@@ -26,7 +27,10 @@ public class MainColoreoGrafos {
 		RegularConGrado g4= new RegularConGrado(6, 2);
 		g4.generar();
 		g4.imprimir();
-		
+		System.out.println("");
+		PorcentajeDeAdyacenciaRegular g5= new PorcentajeDeAdyacenciaRegular(5, 50);
+		g5.generar();
+		g5.imprimir();
 		
 			
 //		System.out.println("0 1 2 3 4");
