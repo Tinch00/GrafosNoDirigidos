@@ -60,6 +60,9 @@ public class GrafoNDNP{
 							this.colorMaximo = color;
 						}
 						this.nodoColor.set(nodo,color);
+						//Si cambio el color, vuelve a recorrer preguntando
+						//si ya tiene algun otro nodo de ese color.
+						C = -1;
 					}
 				}
 			}

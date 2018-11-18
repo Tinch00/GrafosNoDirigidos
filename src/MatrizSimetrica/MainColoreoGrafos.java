@@ -16,7 +16,7 @@ public class MainColoreoGrafos {
 //		grafo.generar();
 //		grafo.imprimir();
 //		System.out.println("");
-		PorcentajeDeAdyacencia grafo2 = new PorcentajeDeAdyacencia(10, 80);
+		PorcentajeDeAdyacencia grafo2 = new PorcentajeDeAdyacencia(10, 100);
 		grafo2.generar();
 		grafo2.imprimir();
 //		System.out.println("");

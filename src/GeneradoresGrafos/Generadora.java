@@ -1,6 +1,5 @@
 package GeneradoresGrafos;
 
-import MatrizSimetrica.Arista;
 import MatrizSimetrica.MatrizSimetrica;
 
 public abstract class Generadora {
