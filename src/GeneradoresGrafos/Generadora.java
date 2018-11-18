@@ -4,7 +4,6 @@ import MatrizSimetrica.MatrizSimetrica;
 
 public abstract class Generadora {
 	protected MatrizSimetrica matriz;
-	private int gradoMaximo, gradoMinimo, cantAristas;
 	private int cantNodos;
 	
 	

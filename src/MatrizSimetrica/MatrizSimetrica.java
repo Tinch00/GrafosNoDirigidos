@@ -4,12 +4,15 @@ public class MatrizSimetrica {
 	
 	// Solo para grafos NO dirigidos.
 	
-	private char[] vectorMatriz;
+	private Nodo[] vectorMatriz;
 	private int cantNodos;
 	
 	public MatrizSimetrica(int cantNodos) {
-		vectorMatriz = new char[(cantNodos*cantNodos-1)/2];
+		vectorMatriz = new Nodo[(cantNodos*cantNodos-1)/2];
 		this.cantNodos = cantNodos;
+		for (int i = 0; i < this.vectorMatriz.length; i++ ) {
+			vectorMatriz[i] = new Nodo('0');
+		}
 	}
 	
 	public char getNodo(int F, int C) {
@@ -24,7 +27,7 @@ public class MatrizSimetrica {
 			F = F - C;
 		}
 		
-		return vectorMatriz[F*this.cantNodos + C - ((int)(Math.pow(F, 2)+ 3*F + 2)/2)];
+		return vectorMatriz[F*this.cantNodos + C - ((int)(Math.pow(F, 2)+ 3*F + 2)/2)].getValorNodo();
 	}
 	
 	public void setNodo(int F, int C) {
@@ -35,7 +38,9 @@ public class MatrizSimetrica {
 			C = F - C;
 			F = F - C;
 		}
-		vectorMatriz[(F*this.cantNodos)+C-((int)(Math.pow(F, 2)+3*F+2)/2)] = '1';
+		
+		int calculo = (F*this.cantNodos)+C-((int)(Math.pow(F, 2)+3*F+2)/2);
+		vectorMatriz[(F*this.cantNodos)+C-((int)(Math.pow(F, 2)+3*F+2)/2)].setValorNodo('1');
 	}
 	
 	public int getCantNodos(){

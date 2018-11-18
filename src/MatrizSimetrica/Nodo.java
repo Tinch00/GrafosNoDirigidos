@@ -2,18 +2,18 @@ package MatrizSimetrica;
 
 public class Nodo {
 	
-	private int valorNodo;
+	private char valorNodo;
 	private int grado;
 	
-	public Nodo(int valorNodo) {
+	public Nodo(char valorNodo) {
 		this.valorNodo = valorNodo;
 	}
 	
-	public int getValorNodo() {
+	public char getValorNodo() {
 		return this.valorNodo;
 	}
 	
-	public void setValorNodo(int valorNodo) {
+	public void setValorNodo(char valorNodo) {
 		this.valorNodo = valorNodo;
 	}
 	
