@@ -25,7 +25,7 @@ public class MainColoreoGrafos {
 //		grafo3.imprimir();
 		
 		GrafoNDNP grafoNDNP = new GrafoNDNP(grafo2.getMatrizSimetrica());
-		grafoNDNP.coloreoWelshPowell(1);
+		grafoNDNP.coloreoMatula(1);
 		grafoNDNP.imprimirNodoColor();
 //		System.out.println("");
 //		RegularConGrado g4= new RegularConGrado(10, 5);

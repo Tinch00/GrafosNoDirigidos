@@ -2,15 +2,17 @@ package AlgoritmosColoreo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import MatrizSimetrica.MatrizSimetrica;
+import MatrizSimetrica.Nodo;
 
 public class GrafoNDNP{
 	
 	//Listas:
 	private ArrayList <Integer> nodoColor;
 	private ArrayList <Integer> listaNodos;
-	private ArrayList <Integer> nodoGrado;
+	private ArrayList <Nodo> nodoGrado;
 	private MatrizSimetrica matriz;
 	
 	//Estadisticas:
@@ -22,7 +24,7 @@ public class GrafoNDNP{
 		this.matriz = matriz;
 		this.nodoColor = new ArrayList<Integer>();
 		this.listaNodos = new ArrayList<Integer>();
-		this.nodoGrado = new ArrayList<Integer>();
+		this.nodoGrado = new ArrayList<Nodo>();
 	}
 	
 	public void coloreoAleatorio(int cantidadCorridas) {
@@ -43,9 +45,9 @@ public class GrafoNDNP{
 		int indiceMayorGrado = 0;
 		int indiceMenorGrado = this.matriz.getCantNodos() - 1;
 		
-		//Inicializo listaNodos
+		//Inicializo gradoNodo
 		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
-			this.listaNodos.add(nodo);
+			this.nodoGrado.add(new Nodo(nodo));
 		}
 		
 		//Calculo de Grado.
@@ -63,15 +65,19 @@ public class GrafoNDNP{
 			if (grado < gradoMinimo)
 				gradoMinimo = grado;
 			
-			this.nodoGrado.add(indiceNodo,grado);
+			this.nodoGrado.get(indiceNodo).setGrado(grado);
 		}
-		//Al ser integers, no hace falta el comparator.
-		Collections.sort(this.nodoGrado,Collections.reverseOrder());
-		//Para matula: Collections.sort(arraylist, Collections.reverseOrder());
 		
-		
+		Collections.sort(this.nodoGrado,new Comparator<Nodo>(){
+			@Override
+			public int compare(Nodo nodo1, Nodo nodo2) {
+				return nodo2.getGrado() - nodo1.getGrado();
+			};
+		});
+
 		for (int i = 0; i < this.nodoGrado.size(); i++) {
-			int valorNodo = this.nodoGrado.get(i);
+			//Chimi para saber desde donde y hasta donde hacer shuffle
+			int valorNodo = this.nodoGrado.get(i).getGrado();
 			if (valorNodo == gradoMaximo) {
 				indiceMayorGrado = i+1;
 			}
@@ -82,7 +88,72 @@ public class GrafoNDNP{
 		}
 		
 		for (int i = 0; i < cantidadCorridas; i++) {
+			//Descarta los nodos de grado mayor y menor y hace un shuffle de los del medio.
 			Collections.shuffle(this.nodoGrado.subList(indiceMayorGrado, indiceMenorGrado));
+			//Guarda en "listaNodos" el orden a ordenar los nodos.
+			for (int j = 0; j < this.nodoGrado.size(); j++) {
+				this.listaNodos.add(j, this.nodoGrado.get(j).getValorNodo());
+			}
+			this.colorear();
+		}
+	}
+	
+	public void coloreoMatula(int cantidadCorridas) {
+		this.gradoMaximo = 0;
+		this.gradoMinimo = this.matriz.getCantNodos() - 1;
+		int indiceMayorGrado = 0;
+		int indiceMenorGrado = this.matriz.getCantNodos() - 1;
+		
+		//Inicializo gradoNodo
+		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
+			this.nodoGrado.add(new Nodo(nodo));
+		}
+		
+		//Calculo de Grado.
+		for (int indiceNodo = 0; indiceNodo < this.matriz.getCantNodos(); indiceNodo++) {
+			int grado = 0;
+			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
+				if (indiceNodo != C) {
+					if (this.matriz.getNodo(indiceNodo, C) == '1'){
+						grado++;
+					}
+				}
+			}
+			if (grado > gradoMaximo)
+				gradoMaximo = grado;
+			if (grado < gradoMinimo)
+				gradoMinimo = grado;
+			
+			this.nodoGrado.get(indiceNodo).setGrado(grado);
+		}
+		
+		Collections.sort(this.nodoGrado,new Comparator<Nodo>(){
+			@Override
+			public int compare(Nodo nodo1, Nodo nodo2) {
+				return nodo1.getGrado() - nodo2.getGrado();
+			};
+		});		
+		
+		for (int i = 0; i < this.nodoGrado.size(); i++) {
+			//Chimi para saber desde donde y hasta donde hacer shuffle
+			int gradoNodo = this.nodoGrado.get(i).getGrado();
+			if (gradoNodo == gradoMinimo) {
+				indiceMenorGrado = i+1;
+			}
+			
+			if (gradoNodo < gradoMaximo) {
+				indiceMayorGrado = i;
+			}
+				
+		}
+		
+		for (int i = 0; i < cantidadCorridas; i++) {
+			//Descarta los nodos de grado mayor y menor y hace un shuffle de los del medio.
+			Collections.shuffle(this.nodoGrado.subList(indiceMenorGrado,indiceMayorGrado));
+			//Guarda en "listaNodos" el orden a ordenar los nodos.
+			for (int j = 0; j < this.nodoGrado.size(); j++) {
+				this.listaNodos.add(j, this.nodoGrado.get(j).getValorNodo());
+			}
 			this.colorear();
 		}
 	}

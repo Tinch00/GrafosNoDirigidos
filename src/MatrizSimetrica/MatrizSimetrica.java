@@ -35,8 +35,6 @@ public class MatrizSimetrica {
 			C = F - C;
 			F = F - C;
 		}
-		
-		int calculo = (F*this.cantNodos)+C-((int)(Math.pow(F, 2)+3*F+2)/2);
 		vectorMatriz[(F*this.cantNodos)+C-((int)(Math.pow(F, 2)+3*F+2)/2)] = '1';
 	}
 	
