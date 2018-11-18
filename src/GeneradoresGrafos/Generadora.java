@@ -42,6 +42,6 @@ public abstract class Generadora {
 		}
 	}
 	
-	//como generar un grafo de red de mundo Peque�o. para el 7 de Mica.
+	//como generar un grafo de red de mundo Pequenio. para el 7 de Mica.
 
 }

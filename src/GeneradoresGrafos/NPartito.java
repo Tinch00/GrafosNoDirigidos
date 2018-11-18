@@ -35,9 +35,9 @@ public class NPartito extends Generadora{
 		
 		//Recorro todos los nodos de todos los conjuntos menos el último
 		//Ya que deberia estar completo.
-		for (int i = 0; i<this.listaConjunto.size()-2; i++) {
+		for (int i = 0; i<this.listaConjunto.size()-1; i++) {
 			for (Integer nodoOrigen : this.listaConjunto.get(i)) {
-				for (int j = i+1; j < this.listaConjunto.size()-1;j++) {
+				for (int j = i+1; j < this.listaConjunto.size();j++) {
 					for (Integer nodoDestino : this.listaConjunto.get(j)) {
 						this.matriz.setNodo(nodoOrigen, nodoDestino);
 					}						
