@@ -19,6 +19,14 @@ public abstract class Generadora {
 	//Calcular GradoMax  y GradoMin.
 	//Calcular Aristas.
 	
+	public int getCantNodos() {
+		return this.cantNodos;
+	}
+	
+	public MatrizSimetrica getMatrizSimetrica() {
+		return this.matriz;
+	}
+	
 	
 	public void imprimir(){
 //		String ESPACIOS = " ";

@@ -21,8 +21,6 @@ public class GrafoNDNP{
 	}
 	
 	public void coloreoAleatorio(int cantidadCorridas) {
-		int cantColoresUltimaCorrida;
-		int cantColoresMin = 1;
 		
 		cantidadCorridas = 1;
 		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
@@ -50,7 +48,7 @@ public class GrafoNDNP{
 			
 			if (indiceNodo == 0) {
 				//Primer nodo color 1;
-				this.nodoColor.add(nodo,color);
+				this.nodoColor.set(nodo,color);
 				continue;
 			}
 			
@@ -65,8 +63,21 @@ public class GrafoNDNP{
 					}
 				}
 			}
-			
 		}
+	}
+	
+	public void imprimirNodoColor(){
+		System.out.println();
+		System.out.print("Secuencia de coloreo: ");
+		for (int i = 0; i < this.listaNodos.size(); i++) {
+			System.out.print(this.listaNodos.get(i) + " - ");
+	}
+		System.out.println();
+		for (int i = 0; i < this.nodoColor.size(); i++) {
+			System.out.println("nodo: " + i + " - Color: " + this.nodoColor.get(i) );
+	}
+		System.out.println("Maximo Colores: " + this.colorMaximo);
+		
 	}
 	
 
