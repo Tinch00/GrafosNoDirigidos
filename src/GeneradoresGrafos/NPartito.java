@@ -33,16 +33,13 @@ public class NPartito extends Generadora{
 				indiceConjunto++;
 		}
 		
-		for (int i = 0; i<this.listaConjunto.size(); i++) {
-			for (Integer nodo : this.listaConjunto.get(i)) {
-				for (int j = 0; j < i;j++) {
-					for (int k = 0; k < this.listaConjunto.get(j).size(); k++) {
-						this.matriz.setNodo(nodo, this.listaConjunto.get(i).get(k));
-					}						
-				}
+		//Recorro todos los nodos de todos los conjuntos menos el último
+		//Ya que deberia estar completo.
+		for (int i = 0; i<this.listaConjunto.size()-2; i++) {
+			for (Integer nodoOrigen : this.listaConjunto.get(i)) {
 				for (int j = i+1; j < this.listaConjunto.size()-1;j++) {
-					for (int k = 0; k < this.listaConjunto.get(j).size(); k++) {
-						this.matriz.setNodo(nodo, this.listaConjunto.get(i).get(k));
+					for (Integer nodoDestino : this.listaConjunto.get(j)) {
+						this.matriz.setNodo(nodoOrigen, nodoDestino);
 					}						
 				}	
 			}
