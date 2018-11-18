@@ -21,6 +21,12 @@ public abstract class Generadora {
 	
 	
 	public void imprimir(){
+//		String ESPACIOS = " ";
+//		if (this.matriz.getCantNodos()<)
+//			ESPACIOS = "  ";
+//		else
+//			ESPACIOS = " ";
+		
 		System.out.print(" ");
 		for (int C = 0; C < this.matriz.getCantNodos(); C++) {
 			System.out.print(" " + C);
@@ -30,6 +36,8 @@ public abstract class Generadora {
 			System.out.println();
 			System.out.print(F + " ");
 			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
+				
+				
 				if (this.matriz.getNodo(F, C)=='1') {
 					System.out.printf("%s ",this.matriz.getNodo(F, C));
 				}

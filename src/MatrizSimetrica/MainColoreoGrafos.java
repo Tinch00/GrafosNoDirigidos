@@ -19,11 +19,11 @@ public class MainColoreoGrafos {
 //		grafo2.generar();
 //		grafo2.imprimir();
 //		System.out.println("");
-		NPartito grafo3 = new NPartito(9,3);
-		grafo3.generar();
-		grafo3.imprimir();
-		System.out.println("");
-//		RegularConGrado g4= new RegularConGrado(6, 2);
+//		NPartito grafo3 = new NPartito(12,3);
+//		grafo3.generar();
+//		grafo3.imprimir();
+//		System.out.println("");
+//		RegularConGrado g4= new RegularConGrado(10, 5);
 //		g4.generar();
 //		g4.imprimir();
 //		
