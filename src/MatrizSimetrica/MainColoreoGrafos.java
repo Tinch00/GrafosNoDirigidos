@@ -16,7 +16,7 @@ public class MainColoreoGrafos {
 //		grafo.generar();
 //		grafo.imprimir();
 //		System.out.println("");
-		PorcentajeDeAdyacencia grafo2 = new PorcentajeDeAdyacencia(10, 100);
+		PorcentajeDeAdyacencia grafo2 = new PorcentajeDeAdyacencia(10, 50);
 		grafo2.generar();
 		grafo2.imprimir();
 //		System.out.println("");
@@ -24,8 +24,8 @@ public class MainColoreoGrafos {
 //		grafo3.generar();
 //		grafo3.imprimir();
 		
-		GrafoNDNP grafoNDNP = new GrafoNDNP(grafo2.getCantNodos(),grafo2.getMatrizSimetrica());
-		grafoNDNP.coloreoAleatorio(1);
+		GrafoNDNP grafoNDNP = new GrafoNDNP(grafo2.getMatrizSimetrica());
+		grafoNDNP.coloreoWelshPowell(1);
 		grafoNDNP.imprimirNodoColor();
 //		System.out.println("");
 //		RegularConGrado g4= new RegularConGrado(10, 5);
