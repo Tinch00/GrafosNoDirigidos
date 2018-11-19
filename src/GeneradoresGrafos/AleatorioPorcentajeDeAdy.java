@@ -50,13 +50,16 @@ public class AleatorioPorcentajeDeAdy extends Generadora {
 		}
 		
 		try {
+			int cantAristas = this.matriz.getCantAristas();
+			int totalAristas = this.matriz.getTotalAristas();
+			double ady =((double)cantAristas/totalAristas)*100;
 			escribirGrafoEnArchivo(this.matriz.getCantNodos(), 
 								   this.matriz.getCantAristas(),
-								   (this.matriz.getCantAristas()/this.matriz.getTotalAristas()),
+								   ady,
 								   gradoMaximo,
 								   gradoMinimo,
 								   this.matriz.getListaAristas(),
-								   "AleatorioConPorcentajeAdy"  + this.matriz.getCantNodos() + "-" + (this.adyacencia*100) + ".in");
+								   "bin/ArchivosEntrada/AleatorioConPorcentajeAdy"  + this.matriz.getCantNodos() + (this.adyacencia*100) + ".in");
 		} catch (IOException e) {
 			System.out.println("No se pudo guardar el archivo");
 			e.printStackTrace();

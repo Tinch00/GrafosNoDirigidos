@@ -41,13 +41,16 @@ public class AleatoriaConProbabilidad extends Generadora {
 		}
 		
 		try {
+			int cantAristas = this.matriz.getCantAristas();
+			int totalAristas = this.matriz.getTotalAristas();
+			double ady =((double)cantAristas/totalAristas)*100;
 			escribirGrafoEnArchivo(this.matriz.getCantNodos(), 
 								   this.matriz.getCantAristas(),
-								   (this.matriz.getCantAristas()/this.matriz.getTotalAristas()),
+								   ady,
 								   gradoMaximo,
 								   gradoMinimo,
 								   this.matriz.getListaAristas(),
-								   "AleatorioConProbabilidad" + this.matriz.getCantNodos() + "-" + (probabilidad*100) + ".in");
+								   "bin/ArchivosEntrada/AleatorioConProbabilidad" + this.matriz.getCantNodos() + (probabilidad*100) + ".in");
 		} catch (IOException e) {
 			System.out.println("No se pudo guardar el archivo");
 			e.printStackTrace();

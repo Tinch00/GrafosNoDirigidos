@@ -1,11 +1,15 @@
 package AlgoritmosColoreo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
+import java.util.Scanner;
 
 import MatrizSimetrica.MatrizSimetrica;
 import MatrizSimetrica.Nodo;
@@ -24,19 +28,62 @@ public class GrafoNDNP{
 	private int gradoMaximo;
 	private int gradoMinimo;
 	
-	public GrafoNDNP(MatrizSimetrica matriz) {
-		this.matriz = matriz;
-		this.nodoColor = new ArrayList<Integer>();
-		this.listaNodos = new ArrayList<Nodo>();
-		this.vectorEstadistica = new int[this.matriz.getCantNodos()];
+	@SuppressWarnings("resource")
+	public GrafoNDNP(String archivoGrafoEntrada) {
+		
+		Scanner sc;
+		try {
+			this.listaNodos = new ArrayList<Nodo>();
+			this.nodoColor = new ArrayList<Integer>();
+			
+			//Tiraba error al leer el Double
+			sc = new Scanner(new File(archivoGrafoEntrada)).useLocale(Locale.US);
+			
+			int cantNodos = sc.nextInt();
+			int cantAristas = sc.nextInt();
+			double porcAdyacencia = sc.nextDouble();
+			this.gradoMaximo = sc.nextInt();
+			this.gradoMinimo = sc.nextInt();
+			
+			this.matriz = new MatrizSimetrica(cantNodos);
+			
+			//Creo los nodos.
+			for (int nodo = 0; nodo < matriz.getCantNodos(); nodo++) {
+				this.listaNodos.add(new Nodo(nodo));
+			}
+
+			//Armo Matriz con Aristas
+			for (int i = 0; i < cantAristas; i++) {
+				this.matriz.setArista(sc.nextInt(), sc.nextInt());
+			}
+			
+			//Seteo Grado Por Arista
+			for (int indiceNodo = 0; indiceNodo < this.matriz.getCantNodos(); indiceNodo++) {
+				int grado = 0;
+				for (int C = 0; C < this.matriz.getCantNodos(); C++) {
+					if (indiceNodo != C) {
+						if (this.matriz.getArista(indiceNodo, C) == '1'){
+							grado++;
+						}
+					}
+				}				
+				this.listaNodos.get(indiceNodo).setGrado(grado);
+			}
+			
+			this.vectorEstadistica = new int[this.matriz.getCantNodos()];
+	
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
 		}
 	
 	public void coloreoAleatorio(int cantidadCorridas) {
 		inicializarVectorEstadistica();
-		
-		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
-			this.listaNodos.add(new Nodo(nodo));
-		}
+
 		
 		for (int i = 0; i < cantidadCorridas; i++) {
 			//Ordena de forma aleatoria los nodos y colorea.
@@ -44,7 +91,8 @@ public class GrafoNDNP{
 			
 			this.colorear();
 			this.vectorEstadistica[this.colorMaximo]++;
-			if(cantidadCorridas % 500 == 0)
+			
+			if(i % 500 == 0)
 				System.out.println("Secuencial: Corrida:" + i);
 		}
 		
@@ -57,34 +105,9 @@ public class GrafoNDNP{
 	}
 	
 	public void coloreoWelshPowell(int cantidadCorridas) {
-		this.gradoMaximo = 0;
-		this.gradoMinimo = this.matriz.getCantNodos() - 1;
 		int indiceMayorGrado = 0;
 		int indiceMenorGrado = this.matriz.getCantNodos() - 1;
 		inicializarVectorEstadistica();
-		
-		//Inicializo gradoNodo
-		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
-			this.listaNodos.add(new Nodo(nodo));
-		}
-		
-		//Calculo de Grado.
-		for (int indiceNodo = 0; indiceNodo < this.matriz.getCantNodos(); indiceNodo++) {
-			int grado = 0;
-			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
-				if (indiceNodo != C) {
-					if (this.matriz.getArista(indiceNodo, C) == '1'){
-						grado++;
-					}
-				}
-			}
-			if (grado > gradoMaximo)
-				gradoMaximo = grado;
-			if (grado < gradoMinimo)
-				gradoMinimo = grado;
-			
-			this.listaNodos.get(indiceNodo).setGrado(grado);
-		}
 		
 		Collections.sort(this.listaNodos,new Comparator<Nodo>(){
 			@Override
@@ -96,11 +119,11 @@ public class GrafoNDNP{
 		for (int i = 0; i < this.listaNodos.size(); i++) {
 			//Chimi para saber desde donde y hasta donde hacer shuffle
 			int gradoNodo = this.listaNodos.get(i).getGrado();
-			if (gradoNodo == gradoMaximo) {
+			if (gradoNodo == this.gradoMaximo) {
 				indiceMayorGrado = i+1;
 			}
 				
-			if (gradoNodo > gradoMinimo) {
+			if (gradoNodo > this.gradoMinimo) {
 				indiceMenorGrado = i;
 			}
 		}
@@ -111,7 +134,7 @@ public class GrafoNDNP{
 			
 			this.colorear();			
 			this.vectorEstadistica[this.colorMaximo]++;
-			if(cantidadCorridas % 500 == 0)
+			if(i % 500 == 0)
 				System.out.println("WP: Corrida:" + i);
 		}
 		
@@ -124,34 +147,9 @@ public class GrafoNDNP{
 	}
 	
 	public void coloreoMatula(int cantidadCorridas) {
-		this.gradoMaximo = 0;
-		this.gradoMinimo = this.matriz.getCantNodos() - 1;
 		int indiceMayorGrado = 0;
 		int indiceMenorGrado = this.matriz.getCantNodos() - 1;
 		inicializarVectorEstadistica();
-		
-		//Inicializo gradoNodo
-		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
-			this.listaNodos.add(new Nodo(nodo));
-		}
-		
-		//Calculo de Grado.
-		for (int indiceNodo = 0; indiceNodo < this.matriz.getCantNodos(); indiceNodo++) {
-			int grado = 0;
-			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
-				if (indiceNodo != C) {
-					if (this.matriz.getArista(indiceNodo, C) == '1'){
-						grado++;
-					}
-				}
-			}
-			if (grado > gradoMaximo)
-				gradoMaximo = grado;
-			if (grado < gradoMinimo)
-				gradoMinimo = grado;
-			
-			this.listaNodos.get(indiceNodo).setGrado(grado);
-		}
 		
 		Collections.sort(this.listaNodos,new Comparator<Nodo>(){
 			@Override
@@ -163,11 +161,11 @@ public class GrafoNDNP{
 		for (int i = 0; i < this.listaNodos.size(); i++) {
 			//Chimi para saber desde donde y hasta donde hacer shuffle
 			int gradoNodo = this.listaNodos.get(i).getGrado();
-			if (gradoNodo == gradoMinimo) {
+			if (gradoNodo == this.gradoMinimo) {
 				indiceMenorGrado = i+1;
 			}
 			
-			if (gradoNodo < gradoMaximo) {
+			if (gradoNodo < this.gradoMaximo) {
 				indiceMayorGrado = i;
 			}
 				
@@ -180,7 +178,7 @@ public class GrafoNDNP{
 			this.colorear();
 			this.vectorEstadistica[this.colorMaximo]++;
 			
-			if(cantidadCorridas % 500 == 0)
+			if(i % 500 == 0)
 				System.out.println("Matula: Corrida:" + i);
 		}
 	//		try {
@@ -247,11 +245,12 @@ public class GrafoNDNP{
 	public void escribirGrafoColoreado(String fo) throws IOException {
 		
 		PrintWriter salida = new PrintWriter(new FileWriter(fo));
+		double ady = this.matriz.getCantAristas()/this.matriz.getTotalAristas();
 
 		salida.println(this.matriz.getCantNodos() + " " + 
 					   this.colorMaximo + " " + 
 					   this.matriz.getCantAristas() + " " + 
-					   (this.matriz.getCantAristas()/this.matriz.getTotalAristas()) + " " + 
+					   ady + " " + 
 					   this.gradoMaximo + " " + 
 					   this.gradoMinimo);
 		
