@@ -73,6 +73,11 @@ public class GrafoNDNP{
 				this.listaNodos.get(indiceNodo).setGrado(grado);
 			}
 			
+			//agrego una entrada por cada vector para guardar los colores.
+			for (int i = 0; i < this.matriz.getCantNodos();i++) {
+				this.nodoColor.add(i,0);
+			}
+			
 			this.vectorEstadistica = new int[this.matriz.getCantNodos()];
 	
 			sc.close();
@@ -203,9 +208,9 @@ public class GrafoNDNP{
 	private void colorear() {
 		this.colorMaximo = 1;
 		int color  = 1;
-		//Inicializo vector Nodo Color
+		//Inicializo vector en cada pasada Nodo Color
 		for (int i = 0; i < this.matriz.getCantNodos();i++) {
-			this.nodoColor.add(i,0);
+			this.nodoColor.set(i,0);
 		}
 		
 		for (int indiceNodo = 0; indiceNodo < this.listaNodos.size(); indiceNodo++) {
