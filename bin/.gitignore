@@ -1,3 +1,5 @@
 /GeneradoresGrafos/
 /MatrizSimetrica/
 /AlgoritmosColoreo/
+*.in
+*.out

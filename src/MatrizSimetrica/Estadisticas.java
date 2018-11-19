@@ -16,7 +16,7 @@ public class Estadisticas {
 		int nodos=600;
 		int adyacencia=40;
 		
-//		GeneroGrafo1
+////////GeneroGrafo1////////////////
 		Generadora aleatorioProba = new AleatoriaConProbabilidad(nodos, adyacencia);
 		aleatorioProba.generar();
 
@@ -33,22 +33,22 @@ public class Estadisticas {
 		grafo.coloreoMatula(100);
 		guardarEstadistica(grafo.getVectorEstadistica(), "MAtula-AleatorioProba"+nodos+adyacencia);
 				
-//		GeneroGrafo2 --> REVISAR PORQUE MATULA Y WP NO ANDA PARA ESTOS CASOS
+////////GeneroGrafo2///////////////////
 		Generadora porcentajeAdyacencia = new AleatorioPorcentajeDeAdy(nodos, adyacencia);
 		porcentajeAdyacencia.generar();
 		
-		GrafoNDNP grafo2 = new GrafoNDNP(aleatorioProba.getMatrizSimetrica());
+		GrafoNDNP grafo2 = new GrafoNDNP(porcentajeAdyacencia.getMatrizSimetrica());
 //		10000corridasGrafo1 secuen
 		grafo2.coloreoAleatorio(100);
-		guardarEstadistica(grafo.getVectorEstadistica(), "SecAlea-PorcAdy"+nodos+adyacencia);
+		guardarEstadistica(grafo2.getVectorEstadistica(), "SecAlea-PorcAdy"+nodos+adyacencia);
 		
 //		10000corridasGrafo1 WP
 		grafo2.coloreoWelshPowell(100);
-		guardarEstadistica(grafo.getVectorEstadistica(), "WP-PorcAdy"+nodos+adyacencia);
+		guardarEstadistica(grafo2.getVectorEstadistica(), "WP-PorcAdy"+nodos+adyacencia);
 		
 //		10000corridasGrafo1 MAtu
 		grafo2.coloreoMatula(100);
-		guardarEstadistica(grafo.getVectorEstadistica(), "Matula-PorcAdy"+nodos+adyacencia);
+		guardarEstadistica(grafo2.getVectorEstadistica(), "Matula-PorcAdy"+nodos+adyacencia);
 	}
 	
 	public static void guardarEstadistica(int[] vector, String fo) {
