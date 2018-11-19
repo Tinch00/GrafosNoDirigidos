@@ -13,15 +13,15 @@ public class Estadisticas {
 	
 	public static void main (String[] args) {
 		
-		int nodos=600;
-		int adyacencia=40;
+		int nodos=10;
+		int adyacencia=50;
 		
 //		GeneroGrafo1
 		Generadora aleatorioProba = new AleatoriaConProbabilidad(nodos, adyacencia);
 		aleatorioProba.generar();
 
-		GrafoNDNP grafo = new GrafoNDNP(aleatorioProba.getMatrizSimetrica());		
-//		10000corridasGrafo1 secuen
+		GrafoNDNP grafo = new GrafoNDNP(aleatorioProba.getMatrizSimetrica());
+////		10000corridasGrafo1 secuen
 		grafo.coloreoAleatorio(100);
 		guardarEstadistica(grafo.getVectorEstadistica(), "SecAlea-AleatorioProba"+nodos+adyacencia);
 		
