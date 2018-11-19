@@ -56,7 +56,7 @@ public class RegularPorcentajeDeAdy extends Generadora {
 									   gradoMaximo,
 									   gradoMinimo,
 									   this.matriz.getListaAristas(),
-									   "bin/ArchivosEntrada/RegularConPorcentajeAdy"  + this.matriz.getCantNodos() + (this.adyacencia*100) + ".in");
+									   "bin/ArchivosEntrada/RegularConPorcentajeAdy"  + this.matriz.getCantNodos() + (this.adyacencia) + ".in");
 			} catch (IOException e) {
 				System.out.println("No se pudo guardar el archivo");
 				e.printStackTrace();
