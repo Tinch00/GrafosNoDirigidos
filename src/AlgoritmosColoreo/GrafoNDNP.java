@@ -5,9 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -85,6 +88,9 @@ public class GrafoNDNP{
 		inicializarVectorEstadistica();
 
 		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
+		
 		for (int i = 0; i < cantidadCorridas; i++) {
 			//Ordena de forma aleatoria los nodos y colorea.
 			Collections.shuffle(this.listaNodos);
@@ -92,8 +98,11 @@ public class GrafoNDNP{
 			this.colorear();
 			this.vectorEstadistica[this.colorMaximo]++;
 			
-			if(i % 500 == 0)
+			if(i % 200 == 0) {
 				System.out.println("Secuencial: Corrida:" + i);
+				Date date = new Date();
+				System.out.print(" - hora: " + dateFormat.format(date));
+			}
 		}
 		
 //		try {
@@ -134,7 +143,7 @@ public class GrafoNDNP{
 			
 			this.colorear();			
 			this.vectorEstadistica[this.colorMaximo]++;
-			if(i % 500 == 0)
+			if(i % 200 == 0)
 				System.out.println("WP: Corrida:" + i);
 		}
 		

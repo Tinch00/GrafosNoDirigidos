@@ -26,15 +26,15 @@ public class Estadisticas {
 		grafo.coloreoAleatorio(cantCorridas);
 		guardarEstadistica(grafo.getVectorEstadistica(), "SecAlea-AleatorioProba"+nodos+adyacencia);
 		
-		GrafoNDNP grafo2 = new GrafoNDNP("bin/ArchivosEntrada/AleatorioConProbabilidad"+nodos+adyacencia+".0"+".in");
-//		10000corridasGrafo1 WP
-		grafo2.coloreoWelshPowell(cantCorridas);
-		guardarEstadistica(grafo2.getVectorEstadistica(), "WP-AleatorioProba"+nodos+adyacencia);
-		
-		GrafoNDNP grafo3 = new GrafoNDNP("bin/ArchivosEntrada/AleatorioConProbabilidad"+nodos+adyacencia+".0"+".in");
-//		10000corridasGrafo1 MAtu
-		grafo3.coloreoMatula(cantCorridas);
-		guardarEstadistica(grafo3.getVectorEstadistica(), "Matula-AleatorioProba"+nodos+adyacencia);
+//		GrafoNDNP grafo2 = new GrafoNDNP("bin/ArchivosEntrada/AleatorioConProbabilidad"+nodos+adyacencia+".0"+".in");
+////		10000corridasGrafo1 WP
+//		grafo2.coloreoWelshPowell(cantCorridas);
+//		guardarEstadistica(grafo2.getVectorEstadistica(), "WP-AleatorioProba"+nodos+adyacencia);
+//		
+//		GrafoNDNP grafo3 = new GrafoNDNP("bin/ArchivosEntrada/AleatorioConProbabilidad"+nodos+adyacencia+".0"+".in");
+////		10000corridasGrafo1 MAtu
+//		grafo3.coloreoMatula(cantCorridas);
+//		guardarEstadistica(grafo3.getVectorEstadistica(), "Matula-AleatorioProba"+nodos+adyacencia);
 				
 ////////GeneroGrafo2///////////////////
 //		Generadora porcentajeAdyacencia = new AleatorioPorcentajeDeAdy(nodos, adyacencia);
