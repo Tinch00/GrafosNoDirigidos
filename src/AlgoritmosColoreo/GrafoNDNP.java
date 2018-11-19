@@ -1,5 +1,8 @@
 package AlgoritmosColoreo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -209,6 +212,27 @@ public class GrafoNDNP{
 		System.out.println("Maximo Colores: " + this.colorMaximo);
 		
 	}
+	
+	
+	public void escribirGrafoColoreado(String fo) throws IOException {
+		
+		PrintWriter salida = new PrintWriter(new FileWriter(fo));
+
+		salida.println(this.matriz.getCantNodos() + " " + 
+					   this.colorMaximo + " " + 
+					   this.matriz.getCantAristas() + " " + 
+					   (this.matriz.getCantAristas()/this.matriz.getTotalAristas()) + " " + 
+					   this.gradoMaximo + " " + 
+					   this.gradoMinimo);
+		
+		salida.println("Nodo - Color");
+		for (int i = 0; i < this.nodoColor.size(); i++) {
+			salida.println(i + " - " + this.nodoColor.get(i) );
+		}
+		
+		salida.close();
+	}
+	
 	
 
 }
