@@ -1,6 +1,5 @@
 package MatrizSimetrica;
 
-import AlgoritmosColoreo.GrafoNDNP;
 import GeneradoresGrafos.AleatoriaConProbabilidad;
 import GeneradoresGrafos.Generadora;
 import GeneradoresGrafos.PorcentajeDeAdyacencia;
