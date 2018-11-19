@@ -194,7 +194,7 @@ public class GrafoNDNP{
 	
 	// Funcion colorear que se utiliza para todas las tecnicas de coloreo.
 	private void colorear() {
-
+		this.colorMaximo = 1;
 		int color  = 1;
 		//Inicializo vector Nodo Color
 		for (int i = 0; i < this.matriz.getCantNodos();i++) {

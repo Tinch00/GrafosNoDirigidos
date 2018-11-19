@@ -13,15 +13,15 @@ public class Estadisticas {
 	
 	public static void main (String[] args) {
 		
-		int nodos=10;
-		int adyacencia=50;
+		int nodos=600;
+		int adyacencia=40;
 		
 //		GeneroGrafo1
 		Generadora aleatorioProba = new AleatoriaConProbabilidad(nodos, adyacencia);
 		aleatorioProba.generar();
 
 		GrafoNDNP grafo = new GrafoNDNP(aleatorioProba.getMatrizSimetrica());
-////		10000corridasGrafo1 secuen
+//		10000corridasGrafo1 secuen
 		grafo.coloreoAleatorio(100);
 		guardarEstadistica(grafo.getVectorEstadistica(), "SecAlea-AleatorioProba"+nodos+adyacencia);
 		
@@ -33,7 +33,7 @@ public class Estadisticas {
 		grafo.coloreoMatula(100);
 		guardarEstadistica(grafo.getVectorEstadistica(), "MAtula-AleatorioProba"+nodos+adyacencia);
 				
-//		GeneroGrafo2
+//		GeneroGrafo2 --> REVISAR PORQUE MATULA Y WP NO ANDA PARA ESTOS CASOS
 		Generadora porcentajeAdyacencia = new AleatorioPorcentajeDeAdy(nodos, adyacencia);
 		porcentajeAdyacencia.generar();
 		
