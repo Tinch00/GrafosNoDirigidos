@@ -56,7 +56,7 @@ public class AleatorioPorcentajeDeAdy extends Generadora {
 								   gradoMaximo,
 								   gradoMinimo,
 								   this.matriz.getListaAristas(),
-								   "AleatorioConPorcAdyacencia.in");
+								   "AleatorioConPorcentajeAdy"  + this.matriz.getCantNodos() + "-" + (this.adyacencia*100) + ".in");
 		} catch (IOException e) {
 			System.out.println("No se pudo guardar el archivo");
 			e.printStackTrace();

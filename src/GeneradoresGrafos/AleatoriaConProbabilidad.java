@@ -47,7 +47,7 @@ public class AleatoriaConProbabilidad extends Generadora {
 								   gradoMaximo,
 								   gradoMinimo,
 								   this.matriz.getListaAristas(),
-								   "AleatorioConProbabilidad.in");
+								   "AleatorioConProbabilidad" + this.matriz.getCantNodos() + "-" + (probabilidad*100) + ".in");
 		} catch (IOException e) {
 			System.out.println("No se pudo guardar el archivo");
 			e.printStackTrace();

@@ -16,6 +16,8 @@ public class GrafoNDNP{
 	private ArrayList <Integer> nodoColor;
 	private ArrayList <Integer> listaNodos;
 	private ArrayList <Nodo> nodoGrado;
+	private int[] vectorEstadistica; 
+	
 	private MatrizSimetrica matriz;
 	
 	//Estadisticas:
@@ -28,9 +30,12 @@ public class GrafoNDNP{
 		this.nodoColor = new ArrayList<Integer>();
 		this.listaNodos = new ArrayList<Integer>();
 		this.nodoGrado = new ArrayList<Nodo>();
-	}
+		this.vectorEstadistica = new int[this.matriz.getCantNodos()];
+		}
 	
 	public void coloreoAleatorio(int cantidadCorridas) {
+		inicializarVectorEstadistica();
+		
 		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
 			this.listaNodos.add(nodo);
 		}
@@ -38,8 +43,18 @@ public class GrafoNDNP{
 		for (int i = 0; i < cantidadCorridas; i++) {
 			//Ordena de forma aleatoria los nodos y colorea.
 			Collections.shuffle(this.listaNodos);
+			
 			this.colorear();
+			
+			this.vectorEstadistica[this.colorMaximo]++;
 		}
+		
+//		try {
+	//		escribirGrafoColoreado("coloreo.out");
+	//	} catch (IOException e) {
+	//		// TODO Auto-generated catch block
+	//		e.printStackTrace();
+	//	}
 	}
 	
 	public void coloreoWelshPowell(int cantidadCorridas) {
@@ -47,6 +62,7 @@ public class GrafoNDNP{
 		this.gradoMinimo = this.matriz.getCantNodos() - 1;
 		int indiceMayorGrado = 0;
 		int indiceMenorGrado = this.matriz.getCantNodos() - 1;
+		inicializarVectorEstadistica();
 		
 		//Inicializo gradoNodo
 		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
@@ -98,7 +114,16 @@ public class GrafoNDNP{
 				this.listaNodos.add(j, this.nodoGrado.get(j).getValorNodo());
 			}
 			this.colorear();
+			
+			this.vectorEstadistica[this.colorMaximo]++;
 		}
+		
+//		try {
+//			escribirGrafoColoreado("coloreo.out");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	public void coloreoMatula(int cantidadCorridas) {
@@ -106,6 +131,7 @@ public class GrafoNDNP{
 		this.gradoMinimo = this.matriz.getCantNodos() - 1;
 		int indiceMayorGrado = 0;
 		int indiceMenorGrado = this.matriz.getCantNodos() - 1;
+		inicializarVectorEstadistica();
 		
 		//Inicializo gradoNodo
 		for (int nodo = 0; nodo < matriz.getCantNodos();nodo++ ) {
@@ -158,7 +184,14 @@ public class GrafoNDNP{
 				this.listaNodos.add(j, this.nodoGrado.get(j).getValorNodo());
 			}
 			this.colorear();
+			this.vectorEstadistica[this.colorMaximo]++;
 		}
+	//		try {
+	//		escribirGrafoColoreado("coloreo.out");
+	//	} catch (IOException e) {
+	//		// TODO Auto-generated catch block
+	//		e.printStackTrace();
+	//	}
 	}
 	
 	
@@ -231,6 +264,16 @@ public class GrafoNDNP{
 		}
 		
 		salida.close();
+	}
+	
+	private void inicializarVectorEstadistica() {
+		for (int i=0; i < this.vectorEstadistica.length; i++) {
+			this.vectorEstadistica[i]=0;
+		}
+	}
+	
+	public int[] getVectorEstadistica() {
+		return this.vectorEstadistica;
 	}
 	
 	
