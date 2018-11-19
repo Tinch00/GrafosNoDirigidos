@@ -1,10 +1,10 @@
 package GeneradoresGrafos;
 
-public class RegularPorcentajeDeAdyacencia extends Generadora {
+public class RegularPorcentajeDeAdy extends Generadora {
 	
 	private double adyacencia;
 		
-		public RegularPorcentajeDeAdyacencia(int cantNodos, int ady) {
+		public RegularPorcentajeDeAdy (int cantNodos, int ady) {
 			super(cantNodos);
 			this.adyacencia = ady;
 		}
