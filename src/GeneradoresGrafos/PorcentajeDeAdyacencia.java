@@ -20,9 +20,9 @@ public class PorcentajeDeAdyacencia extends Generadora {
 	public void generar() {
 		ArrayList<Arista> arista = new ArrayList<Arista>();
 		
-		for (int F=0; F < (this.matriz.getCantNodos()); F++){
-			for (int C=F+1; C<(this.matriz.getCantNodos()); C++){
-				arista.add(new Arista(F,C)); 
+		for (int F=0; F < (this.matriz.getCantNodos()-2); F++){
+			for (int C=F+1; C<(this.matriz.getCantNodos()-1); C++){
+				arista.add(new Arista(F,C));
 			}
 		}
 		

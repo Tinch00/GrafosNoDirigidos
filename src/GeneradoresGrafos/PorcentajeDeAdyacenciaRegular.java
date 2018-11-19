@@ -8,7 +8,7 @@ public class PorcentajeDeAdyacenciaRegular extends Generadora {
 			super(cantNodos);
 			this.adyacencia = ady;
 		}
-		//
+		
 		@Override
 		public void generar() {
 			int grado = (int) ((this.adyacencia/100) * (this.matriz.getCantNodos()-1));

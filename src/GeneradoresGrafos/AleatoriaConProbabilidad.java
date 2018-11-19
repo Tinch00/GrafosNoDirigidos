@@ -11,8 +11,8 @@ public class AleatoriaConProbabilidad extends Generadora {
 	
 	@Override
 	public void generar(){
-		for (int F=0; F < (this.matriz.getCantNodos()); F++){
-			for (int C=F+1; C<(this.matriz.getCantNodos()); C++){
+		for (int F=0; F < (this.matriz.getCantNodos()-2); F++){
+			for (int C=F+1; C<(this.matriz.getCantNodos()-1); C++){
 				if (Math.random() < probabilidad){
 					this.matriz.setNodo(F, C);
 				}			
