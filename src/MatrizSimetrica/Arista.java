@@ -28,5 +28,10 @@ public class Arista {
 	public int getNodoFin(){
 		return this.nodoFin;
 	}
+	
+	@Override
+	public String toString() {
+		return nodoInicio + " " + nodoFin;
+	}
 
 }

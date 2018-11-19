@@ -1,10 +1,10 @@
 package GeneradoresGrafos;
 
-public class PorcentajeDeAdyacenciaRegular extends Generadora {
+public class RegularPorcentajeDeAdyacencia extends Generadora {
 	
 	private double adyacencia;
 		
-		public PorcentajeDeAdyacenciaRegular(int cantNodos, int ady) {
+		public RegularPorcentajeDeAdyacencia(int cantNodos, int ady) {
 			super(cantNodos);
 			this.adyacencia = ady;
 		}
@@ -15,16 +15,16 @@ public class PorcentajeDeAdyacenciaRegular extends Generadora {
 			
 			
 			if((this.matriz.getCantNodos() %2 == 1 && grado %2 ==1) || grado >= this.matriz.getCantNodos() || this.matriz.getCantNodos() == 1 || grado <=0) {
-				System.out.println("ERROR: No se puede generar un grafo de " + this.matriz.getCantNodos() + "nodos y grado " + grado);
+				//System.out.println("ERROR: No se puede generar un grafo de " + this.matriz.getCantNodos() + "nodos y grado " + grado);
 				return;
 			}
 				
 			for(int F = 0; F < this.matriz.getCantNodos(); F++) {
 				for(int C = 1; C <=grado/2; C++) {
-					this.matriz.setNodo(F, (F+C) % this.matriz.getCantNodos());
+					this.matriz.setArista(F, (F+C) % this.matriz.getCantNodos());
 				}
 				if(F < (this.matriz.getCantNodos()/2) && grado%2 == 1)
-					this.matriz.setNodo(F, F + (this.matriz.getCantNodos()/2));
+					this.matriz.setArista(F, F + (this.matriz.getCantNodos()/2));
 			}
 			
 		}

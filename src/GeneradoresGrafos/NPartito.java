@@ -39,7 +39,7 @@ public class NPartito extends Generadora{
 			for (Integer nodoOrigen : this.listaConjunto.get(i)) {
 				for (int j = i+1; j < this.listaConjunto.size();j++) {
 					for (Integer nodoDestino : this.listaConjunto.get(j)) {
-						this.matriz.setNodo(nodoOrigen, nodoDestino);
+						this.matriz.setArista(nodoOrigen, nodoDestino);
 					}						
 				}	
 			}

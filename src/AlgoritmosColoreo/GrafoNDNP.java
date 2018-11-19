@@ -55,7 +55,7 @@ public class GrafoNDNP{
 			int grado = 0;
 			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
 				if (indiceNodo != C) {
-					if (this.matriz.getNodo(indiceNodo, C) == '1'){
+					if (this.matriz.getArista(indiceNodo, C) == '1'){
 						grado++;
 					}
 				}
@@ -77,12 +77,12 @@ public class GrafoNDNP{
 
 		for (int i = 0; i < this.nodoGrado.size(); i++) {
 			//Chimi para saber desde donde y hasta donde hacer shuffle
-			int valorNodo = this.nodoGrado.get(i).getGrado();
-			if (valorNodo == gradoMaximo) {
+			int gradoNodo = this.nodoGrado.get(i).getGrado();
+			if (gradoNodo == gradoMaximo) {
 				indiceMayorGrado = i+1;
 			}
 				
-			if (valorNodo > gradoMinimo) {
+			if (gradoNodo > gradoMinimo) {
 				indiceMenorGrado = i;
 			}
 		}
@@ -114,7 +114,7 @@ public class GrafoNDNP{
 			int grado = 0;
 			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
 				if (indiceNodo != C) {
-					if (this.matriz.getNodo(indiceNodo, C) == '1'){
+					if (this.matriz.getArista(indiceNodo, C) == '1'){
 						grado++;
 					}
 				}
@@ -181,7 +181,7 @@ public class GrafoNDNP{
 			
 			for (int C = 0; C < this.matriz.getCantNodos();C++) {		
 				if (nodo != C) {	
-					if(this.matriz.getNodo(nodo, C) == '1' && this.nodoColor.get(nodo) == this.nodoColor.get(C)) {
+					if(this.matriz.getArista(nodo, C) == '1' && this.nodoColor.get(nodo) == this.nodoColor.get(C)) {
 						color++;
 						if (color > this.colorMaximo) {
 							this.colorMaximo = color;

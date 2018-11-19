@@ -1,15 +1,19 @@
 package GeneradoresGrafos;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import MatrizSimetrica.Arista;
 import MatrizSimetrica.MatrizSimetrica;
 
 public abstract class Generadora {
 	protected MatrizSimetrica matriz;
-	private int cantNodos;
 	
 	
 	public Generadora(int cantNodos){
 		matriz  = new MatrizSimetrica(cantNodos);
-		this.cantNodos = cantNodos;
 	}
 	
 	public abstract void generar();
@@ -18,7 +22,7 @@ public abstract class Generadora {
 	//Calcular Aristas.
 	
 	public int getCantNodos() {
-		return this.cantNodos;
+		return this.getMatrizSimetrica().getCantNodos();
 	}
 	
 	public MatrizSimetrica getMatrizSimetrica() {
@@ -27,11 +31,6 @@ public abstract class Generadora {
 	
 	
 	public void imprimir(){
-//		String ESPACIOS = " ";
-//		if (this.matriz.getCantNodos()<)
-//			ESPACIOS = "  ";
-//		else
-//			ESPACIOS = " ";
 		
 		System.out.print(" ");
 		for (int C = 0; C < this.matriz.getCantNodos(); C++) {
@@ -44,8 +43,8 @@ public abstract class Generadora {
 			for (int C = 0; C < this.matriz.getCantNodos(); C++) {
 				
 				
-				if (this.matriz.getNodo(F, C)=='1') {
-					System.out.printf("%s ",this.matriz.getNodo(F, C));
+				if (this.matriz.getArista(F, C)=='1') {
+					System.out.printf("%s ",this.matriz.getArista(F, C));
 				}
 				else if (F == C) {
 					System.out.printf("- ");
@@ -54,6 +53,18 @@ public abstract class Generadora {
 				}					
 			}
 		}
+	}
+	
+	public void escribirGrafoEnArchivo(int cantNodos, int cantAristas, double ady, int gradoMax, int gradoMin, ArrayList<Arista> listaArista, String fo) throws IOException {
+		PrintWriter salida = new PrintWriter(new FileWriter(fo));
+
+		salida.println(cantNodos + " " + cantAristas + " " + ady + " " + gradoMax + " " + gradoMin);
+		
+		for (Arista arista : listaArista) {
+			salida.println(arista);
+		}
+
+		salida.close();
 	}
 	
 	//como generar un grafo de red de mundo Pequenio. para el 7 de Mica.
