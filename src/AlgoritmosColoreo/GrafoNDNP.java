@@ -109,13 +109,6 @@ public class GrafoNDNP{
 				System.out.print(" - hora: " + dateFormat.format(date));
 			}
 		}
-		
-//		try {
-	//		escribirGrafoColoreado("coloreo.out");
-	//	} catch (IOException e) {
-	//		// TODO Auto-generated catch block
-	//		e.printStackTrace();
-	//	}
 	}
 	
 	public void coloreoWelshPowell(int cantidadCorridas) {
@@ -151,13 +144,6 @@ public class GrafoNDNP{
 			if(i % 200 == 0)
 				System.out.println("WP: Corrida:" + i);
 		}
-		
-//		try {
-//			escribirGrafoColoreado("coloreo.out");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 	
 	public void coloreoMatula(int cantidadCorridas) {
@@ -195,50 +181,42 @@ public class GrafoNDNP{
 			if(i % 500 == 0)
 				System.out.println("Matula: Corrida:" + i);
 		}
-	//		try {
-	//		escribirGrafoColoreado("coloreo.out");
-	//	} catch (IOException e) {
-	//		// TODO Auto-generated catch block
-	//		e.printStackTrace();
-	//	}
 	}
 	
 	
 	// Funcion colorear que se utiliza para todas las tecnicas de coloreo.
+	// Funcion colorear que se utiliza para todas las tecnicas de coloreo.
 	private void colorear() {
-		this.colorMaximo = 1;
-		int color  = 1;
-		//Inicializo vector en cada pasada Nodo Color
-		for (int i = 0; i < this.matriz.getCantNodos();i++) {
-			this.nodoColor.set(i,0);
-		}
+		this.colorMaximo = 0;
+		int color;
 		
-		for (int indiceNodo = 0; indiceNodo < this.listaNodos.size(); indiceNodo++) {
-			Nodo nodo = this.listaNodos.get(indiceNodo);
+		for (int indiceNodo = 0; indiceNodo < this.matriz.getCantNodos(); indiceNodo++) {
 			color = 1;
-			this.nodoColor.set(nodo.getValorNodo(), color);
 			
-			if (indiceNodo == 0) {
-				//Primer nodo color 1;
-				this.nodoColor.set(nodo.getValorNodo(),color);
-				continue;
+			while(!coloreable(indiceNodo, color)) {
+				color++;
 			}
-			
-			for (int C = 0; C < this.matriz.getCantNodos();C++) {		
-				if (nodo.getValorNodo() != C) {	
-					if(this.matriz.getArista(nodo.getValorNodo(), C) == '1' && this.nodoColor.get(nodo.getValorNodo()) == this.nodoColor.get(C)) {
-						color++;
-						if (color > this.colorMaximo) {
-							this.colorMaximo = color;
-						}
-						this.nodoColor.set(nodo.getValorNodo(),color);
-						//Si cambio el color, vuelve a recorrer preguntando
-						//si ya tiene algun otro nodo de ese color.
-						C = -1;
-					}
+				
+			this.nodoColor.set(indiceNodo,color);
+			if (color > this.colorMaximo) {
+				this.colorMaximo = color;	
+				
+			}
+		}
+	}
+	
+	public boolean coloreable(int posicion, int color) {
+		
+		for (int i = 0; i < this.matriz.getCantNodos(); i++) {
+			if(this.nodoColor.get(i) == color) {
+				//Adyacente?
+				if(this.matriz.getArista(this.listaNodos.get(posicion).getValorNodo(), this.listaNodos.get(i).getValorNodo()) == '1'){
+					return false;
 				}
 			}
 		}
+		
+		return true;
 	}
 	
 	public void imprimirNodoColor(){
